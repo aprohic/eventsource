@@ -12,7 +12,7 @@ app.get('/sse', (req, res) => {
   const pusher = setInterval(() => {
     sseStream.write({
       event: 'server-time',
-      data: new Date().toTimeString()
+      data: new Date().toTimeString(),
     })
   }, 1000)
 
@@ -21,6 +21,11 @@ app.get('/sse', (req, res) => {
     clearInterval(pusher)
     sseStream.unpipe(res)
   })
+})
+
+app.get('/sse-403', (req, res) => {
+  res.status(403)
+    .send()
 })
 
 app.listen(8080, (err) => {
