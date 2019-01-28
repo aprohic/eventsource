@@ -49,6 +49,6 @@
   }
 
   // subscribe(new EventSource('/sse'),         document.getElementById('es-messages'));
-  subscribe(new EventSourcePolyfill(window.location.origin + '/sse-403'), document.getElementById('es-polyfill-messages'))
+  subscribe(new EventSourcePolyfill(window.location.origin + '/sse'), document.getElementById('es-polyfill-messages'))
 </script>
 </body>

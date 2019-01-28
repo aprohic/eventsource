@@ -515,7 +515,6 @@ function EventSource (url, eventSourceInitDict) {
 
       })
       .catch(err => {
-        console.log(err, 'error')
         if (['AbortError', 'DOMException'].indexOf(err.name) === -1) {
           onConnectionClosed(err.message)
         }
@@ -636,7 +635,7 @@ function EventSource (url, eventSourceInitDict) {
         _emit('open', new Event('open'))
 
       } else if (req.readyState === 4) {
-        self._close()
+        onConnectionClosed(`${req.statusText} ${req.status}`)
       }
     }
 
