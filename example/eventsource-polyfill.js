@@ -378,6 +378,7 @@ function EventSource (url, eventSourceInitDict) {
   let discardTrailingNewline = false
   let data = ''
   let eventName = ''
+  const demoMode = Boolean(eventSourceInitDict && eventSourceInitDict.demo_mode)
 
   let reconnectUrl = null
 
@@ -658,6 +659,9 @@ function EventSource (url, eventSourceInitDict) {
 
   function _emit () {
     if (self.listeners(arguments[0]).length > 0) {
+      if (demoMode) {
+        console.log(arguments)
+      }
       self.emit.apply(self, arguments)
     }
   }
