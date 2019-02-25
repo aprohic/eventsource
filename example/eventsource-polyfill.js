@@ -658,10 +658,10 @@ function EventSource (url, eventSourceInitDict) {
   connect()
 
   function _emit () {
+    if (demoMode) {
+      console.log(arguments)
+    }
     if (self.listeners(arguments[0]).length > 0) {
-      if (demoMode) {
-        console.log(arguments)
-      }
       self.emit.apply(self, arguments)
     }
   }
