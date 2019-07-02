@@ -364,6 +364,11 @@ function EventSource (url, eventSourceInitDict) {
       if (readyState !== EventSource.CONNECTING) {
         return
       }
+      if (controller) controller.abort();
+      if (req) {
+        req.onreadystatechange = null;
+        req.abort && req.abort();
+      }
       connect()
     }, self.reconnectInterval)
   }
